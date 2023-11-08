@@ -1,0 +1,118 @@
+Experiment1:Perform following information  gathering using nmap too;
+a.get the ip address of host
+Ans: nmap <example>
+b.to get operating system details 
+Ans:nmap -O  <example>
+c.service version
+Ans: nmap -A(enable os and version detection,script scanning,tracerout) -T4(for faster execution) <example>
+d.perform a rpc scan
+ans: nmap -sV
+nmap -sR
+e.Force Reverse DNS Resolution
+ans: nmap -R <example>
+
+2.Perform following namep scanning to obtain port details
+a.xmas scan
+Ans:nmap -sX <example>
+b.TCP ACK SCAN
+Ans:nmap -sA <example>
+c.custom TCP Scan
+Ans: nmap --scanflags[flags][flags ] <example>
+d.IP protocol scan
+Ans: nmap -sO <example.com>
+e.send raw ethernet
+Ans: nmap --send-eth <example.com>
+
+3.Perform fingerprinting and information gathering using nslookup  
+a.To get the IP address of a domain.
+Ans:nslookup <example.com>
+b.For reverse DNS lookup
+Ans:nslookup <ip>
+
+c.For lookup for any record
+Ans:
+nslookup -type=<> <example.com> (A=ipv4,AAAA=ipv6,MX=mailexchanger,NS=nameserver
+d.Lookup for an SOA record
+Ans:
+nslookup
+>set q=SOA
+><example.com>
+
+e.Lookup for an ns record
+Ans:>set q=ns
+f.Lookup for an MX record
+Ans:>set q=MX
+g.Lookup for a txt record
+
+4.Install sqlmap aand test and exploit SQL Injection (https://hackertarget.com/sqlmap-tutorial/)
+Ans
+step1:sudo apt-get install sqlmap
+step2:whereis sqlmap
+now install dvwa
+step1:go  to /var/www/html
+step2: sudo git clone https://github.com/digininja/DVWA
+step3: renaming the file mv DVWA dvwa
+step4:change permissions: chmod -R 777 dvwa/
+step5: go into dvwa/config
+step6:copying config.inc.php.dist and saving the copy as config.inc.php(cp original new)
+step7: open the new fie and set db_user as user and db_password as pass
+
+now install and configure mysql
+step1:sudo apt install default-mysql-server
+step2:sudo service mysql start
+step3:sudo mysql -u root -p
+step4:create user 'user'@'127.0.0.1' identified by 'pass';
+step4:grant all privileges on dvwa.* to 'user'@'127.0.0.1' identified by 'pass';
+now install php
+
+now configure apache
+step1:cd /etc/php/8.2/apache2
+step2:in that open php.ini
+step2:find allow_url_fopen and allow-url-include and set them both as On
+step3:service apache2 start
+now: open http://127.0.0.1/dvwa/setup.php
+step1:scroll down and click create/reset button
+step2:username:admin password:password
+
+
+5.Find a weak password using John the Ripper tool
+Ans:
+1.cat /etc/passwd
+2.cat /etc/shadow
+3.unshadow the two files
+create passwd.txt
+create shadow.txt
+unshadow passwd.txt shadow.txt >unshadowed.txt
+gzip -dk rockyou.txt.gz
+4.john --wordlist=/usr/shar/wordlists
+
+6.Demonstrate dnsenum for
+a.	Get the host’s addresses (A record).<example>
+b.	Get the namservers (threaded).
+
+c.	Get the MX record (threaded).
+d.	Perform axfr queries on nameservers and get BIND versions(threaded).
+e.	Get extra names and subdomains via google scraping (google query = “allinurl: -www site:domain”).
+Ans:
+dnsenum --enum <example.com>
+
+7.https://www.golinuxcloud.com/hping3-command-in-linux/
+9.a. Firewall Status of Host System:
+To monitor the firewall status of a host system using Wireshark, you would typically need to capture network traffic to or from the host and look for packets that are either blocked or allowed by the firewall. Here's a general approach:
+
+Launch Wireshark and select the network interface through which you want to capture traffic.
+
+Apply filters to capture only the relevant traffic. For example, you can use a filter like host <host_ip> to capture traffic to or from the specific host you're interested in.
+
+Analyze the captured packets to identify any firewall-related events, such as packets being dropped or rejected by the firewall.
+
+Keep in mind that this kind of monitoring may require administrative access to the host or network, and you should always ensure you have proper authorization.
+
+b. Object Details Shared in the Network:
+To monitor network traffic to find details about shared objects or resources, you can use Wireshark to capture and analyze packets. This can include identifying shared files, services, and communication between networked devices.
+
+Launch Wireshark and select the network interface you want to monitor.
+
+Apply filters or use display filters to narrow down the captured traffic. For example, you can use filters like http to capture web traffic or smb to capture traffic related to file sharing using the SMB protocol.
+
+Analyze the captured packets to identify the objects or resources being shared, as well as the protocols and methods being used for sharing.
